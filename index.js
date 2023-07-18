@@ -10,3 +10,12 @@ const items = document.querySelectorAll(".list-group-item");
 for (let i = 0; i < items.length; ++i) {
   items[i].style.fontWeight = 900;
 }
+const newName = document.getElementsByClassName("list-group-item");
+for (let i = 0; i < newName.length; ++i) {
+  newName[i].style.backgroundColor = "pink";
+}
+const newTagName = document.getElementsByTagName("li");
+
+for (let i = 0; i < newTagName.length; ++i) {
+  newTagName[i].style.backgroundColor = "yellow";
+}
