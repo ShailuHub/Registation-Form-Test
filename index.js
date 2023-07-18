@@ -4,3 +4,9 @@ const title = document.getElementsByClassName("title");
 mainHeader.style.borderBottom = "solid 2px black";
 title[0].style.color = "green";
 title[0].style.fontWeight = 900;
+const item = document.querySelector(".list-group-item:nth-child(3)");
+item.style.backgroundColor = "green";
+const items = document.querySelectorAll(".list-group-item");
+for (let i = 0; i < items.length; ++i) {
+  items[i].style.fontWeight = 900;
+}
