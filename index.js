@@ -1,63 +1,47 @@
-const ele = document.querySelector("#items");
-// console.log(ele);
-// //Parent Node
-// console.log(ele.parentNode);
-// console.log(ele.parentNode.parentNode);
-// console.log(ele.parentNode.parentNode.parentNode);
+const form = document.getElementById("addForm");
+const listItem = document.getElementById("items");
 
-// // ParentElement
-// console.log(ele.parentElement);
-// console.log(ele.parentElement.parentElement);
-// console.log(ele.parentElement.parentElement.parentElement);
+form.addEventListener("submit", addItem);
+listItem.addEventListener("click", removeItem);
 
-// // Child Node
-// // Include text
-// console.log(ele.childNodes);
+function addItem(event) {
+  event.preventDefault();
+  //Target the input value
+  const insertItemValue = document.getElementById("item");
+  const value = insertItemValue.value;
+  console.log(value);
+  //Crate a ListNode
+  const newItem = document.createElement("li");
 
-// //Children
-// //Include only element
-// console.log(ele.children);
+  // Add class to ListNode
+  newItem.className = "list-group-item";
 
-// //Siblings
-// //Include text
-// console.log(ele.nextSibling);
-// console.log(ele.previousSibling);
+  //Add textNode to list
+  newItem.appendChild(document.createTextNode(value));
 
-// //Siblig Element
-// //Include only element
-// console.log(ele.nextElementSibling);
-// console.log(ele.previousElementSibling);
+  //Add delete Button
+  const deleteBtn = document.createElement("button");
+  const editBtn = document.createElement("button");
+  deleteBtn.className = "btn btn-danger btn-sm float-right delete";
+  editBtn.className = "btn btn-info btn-sm float-right delete mr-2";
+  //Add textNode to button
+  deleteBtn.appendChild(document.createTextNode("X"));
+  editBtn.appendChild(document.createTextNode("edit"));
 
-//creating a new div element
-const newDiv = document.createElement("div");
+  //inserting delete button to newItem list
+  newItem.appendChild(deleteBtn);
+  newItem.appendChild(editBtn);
 
-//Giving class name to it
-newDiv.className = "newDiv";
+  //Insert newItem to the DOM
+  listItem.appendChild(newItem);
+}
 
-//Giving id name to it
-newDiv.id = "new_div";
-//Adding Attribue
-
-newDiv.setAttribute("style", "color:red");
-
-//creating textNode
-const newText = document.createTextNode("Hello World");
-
-//Inserting newText;
-newDiv.appendChild(newText);
-
-//Insetring newDiv in DOM
-const container = document.querySelector(".container");
-const h1 = document.querySelector("#header-title");
-container.insertBefore(newDiv, h1);
-
-const ListItem = document.querySelector("#items");
-const item1 = document.querySelector(".list-group-item:nth-child(1)");
-const newListItem = document.createElement("li");
-newListItem.className = "list-group-item";
-const liText = document.createTextNode("Hello World");
-newListItem.appendChild(liText);
-ListItem.insertBefore(newListItem, item1);
-console.log(newListItem);
-
-console.log(newDiv);
+function removeItem(event) {
+  event.preventDefault();
+  let contain = event.target.classList.contains("delete");
+  if (contain) {
+    if (confirm("Are u sure ?")) {
+      listItem.removeChild(event.target.parentElement);
+    }
+  }
+}
